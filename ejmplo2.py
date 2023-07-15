@@ -10,7 +10,3 @@ def montrer_jours2():
     liste1=tuple(zip(numJour,jours))
     for i, t in liste1:
         print(f"{i}: {t}")
-
-# montrer_jours1()
-# print("") 
-# montrer_jours2()

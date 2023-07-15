@@ -1,4 +1,4 @@
-
+#Archivo de ejemplo 1 (Fichier d’exemple 1)
 def salutation():
 
     print("Bonjour le monde")
