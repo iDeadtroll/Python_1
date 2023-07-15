@@ -1,6 +1,4 @@
 
-
-
 def salutation():
 
     print("Bonjour le monde")
