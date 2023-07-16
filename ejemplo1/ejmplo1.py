@@ -33,7 +33,7 @@ listeAu_revoirs=[]
 listeRemercier=[]
 listeDemanderFaveur=[]
 
-def write_le_mot(phrase,fichier):
+def write_le_fichier(phrase,fichier):
     if os.path.exists(fichier):
         with open(fichier,'a') as f:
             f.writelines(f"{phrase}\n")
@@ -41,7 +41,8 @@ def write_le_mot(phrase,fichier):
         with open(fichier,'w') as f:
             f.writelines(f"{phrase}\n")
 
-def read_le_mot():
+
+def read_le_fichier():
     fichier=input("Nom du fichier que vous souhaitez lire: ")
     if os.path.exists(fichier):
         with open(fichier,'r') as f:
@@ -51,49 +52,18 @@ def read_le_mot():
     else:
         print("Erreur: le fichier n'existe pas")
 
-def introduire_le_mot():
-    phrase=input("Introduire le mot: ")
-    fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot: ")
-    write_le_mot(phrase,fichier)
+# Entrez l'expression et le nom du fichier où l’expression sera enregistrée
+def introduire_le_expression():
+    phrase=input("Introduire le mot/phrase: ")
+    fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
+    write_le_fichier(phrase,fichier)
 
-def listes_de_mots():
-    chemin = '/ruta/del/directorio'
-    fichiers = os.listdir(chemin)
+# Afficher les fichier avec l'extension '.txt' d'un chemin
+def listes_de_fichers():
+    chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
+    extension = '.txt'
+
+    fichiers = (fichier for fichier in os.listdir(chemin) if fichier.endswith(extension))
 
     for fichier in fichiers:
         print(fichier)
-
-introduire_le_mot()
-
-
-def introduire_Au_revoir():
-    return 0
-
-def introduire_Remercier():
-    return 0
-
-def introduire_DemanderFaveur():
-    return 0
-
-def montrer_salutation():
-    return 0
-
-def montrer_Au_revoir():
-    return 0
-
-def montrer_Remercier():
-    return 0
-
-def montrer_DemanderFaveur():
-    return 0
-
-# def salutation():
-
-#     print("Bonjour le monde")
-
-# listeQuelquesMots1=('Bonjour','Au revoir','Merci',"S'il vous plaît")
-
-
-# def montrer_le_mot(index):
-    
-#     print(listeQuelquesMots1[index])
