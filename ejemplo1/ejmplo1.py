@@ -92,3 +92,19 @@ def introduire_le_expression():
 
 # Fonction principal
 def main_fonction_1():
+    op = 0
+    while op != 3:
+        print(f'1. Agregar nueva frase/palabra al diccionario','\n2. Listas de expresiones','\n3. Salir al menu principal')
+        try:
+            op = int(input('Elije una opción: '))
+        except ValueError:
+            print('Ingresa un número válido')
+            continue
+        if op == 1:
+            introduire_le_expression()
+        elif op == 2:
+            read_le_fichier()
+        elif op == 3:
+            print("\nVolviendo al menu principal\n")
+        else:
+            print('Ingresa una opción válida')
