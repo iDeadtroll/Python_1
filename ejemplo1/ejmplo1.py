@@ -23,8 +23,8 @@
 #   C`est vraiment très gentil de votre part – Es muy amable de tu parte 
 
 #   S’il vous plaît – Por favor
-#   Pourriez-vous répéter, s’il vous plaît? – ¿Podría repetir, por favor1
-#   Pourriez-vous parler plus lentement, s’il vous plaît? – ¿Podría hablar más lentamente, por favor1
+#   Pourriez-vous répéter, s’il vous plaît? – ¿Podría repetir, por favor?
+#   Pourriez-vous parler plus lentement, s’il vous plaît? – ¿Podría hablar más lentamente, por favor?
 import os.path
 import os
 
@@ -32,7 +32,10 @@ listeSalutations=[]
 listeAu_revoirs=[]
 listeRemercier=[]
 listeDemanderFaveur=[]
+listeDeFichiers=[]
+nom_fichier=""
 
+# écrire le mot/phrase dans le fichier
 def write_le_fichier(phrase,fichier):
     if os.path.exists(fichier):
         with open(fichier,'a') as f:
@@ -41,9 +44,32 @@ def write_le_fichier(phrase,fichier):
         with open(fichier,'w') as f:
             f.writelines(f"{phrase}\n")
 
+# Afficher les fichier avec l'extension '.txt' d'un chemin
+def listes_de_fichers():
+    chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
+    extension = '.py'
 
+    fichiers = (fichier for fichier in os.listdir(chemin) if not fichier.endswith(extension))
+
+# Fonction normale
+    # for fichier in fichiers:
+    #     listeDeFichiers.append(fichier)
+    # for i in listeDeFichiers:
+    #     print(i)
+
+# Fonctionnalité avancée 1 (fonction: .extend)
+    listeDeFichiers.extend(fichiers)
+    for index,fichier in enumerate(listeDeFichiers):
+# Fonctionnalité avancée 2 (fonction: .split('.')[0])
+        nom_fichier = fichier.split('.')[0]
+        print(f"{index}: {nom_fichier}")
+
+# lire les mots/phrases du fichier
 def read_le_fichier():
-    fichier=input("Nom du fichier que vous souhaitez lire: ")
+    # fichier=input("Nom du fichier que vous souhaitez lire: ")
+    listes_de_fichers()
+    option=int(input("Numéro du fichier que vous voulez lire: "))
+    fichier=listeDeFichiers[option]
     if os.path.exists(fichier):
         with open(fichier,'r') as f:
             for linea in f:
@@ -51,19 +77,11 @@ def read_le_fichier():
             f.close()
     else:
         print("Erreur: le fichier n'existe pas")
+read_le_fichier()
 
 # Entrez l'expression et le nom du fichier où l’expression sera enregistrée
 def introduire_le_expression():
     phrase=input("Introduire le mot/phrase: ")
     fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
     write_le_fichier(phrase,fichier)
-
-# Afficher les fichier avec l'extension '.txt' d'un chemin
-def listes_de_fichers():
-    chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
-    extension = '.txt'
-
-    fichiers = (fichier for fichier in os.listdir(chemin) if fichier.endswith(extension))
-
-    for fichier in fichiers:
-        print(fichier)
+    

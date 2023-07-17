@@ -1,5 +1,1 @@
-bonjour
-salut
-bonsoir
-coucou
-allo
+bonsoir: buenas tardes/buenas noches
