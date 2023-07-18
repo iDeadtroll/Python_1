@@ -34,23 +34,23 @@ listeAu_revoirs=[]
 listeRemercier=[]
 listeDemanderFaveur=[]
 listeDeFichiers=[]
-
+chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
+# chemin_complet=""
 # écrire le mot/phrase dans le fichier
-def write_le_fichier(phrase,fichier):
-    if os.path.exists(fichier):
-        with open(fichier,'a') as f:
+def write_le_fichier(phrase,chemin_complet):
+    if os.path.exists(chemin_complet):
+        with open(chemin_complet,'a') as f:
             f.writelines(f"{phrase}\n")
     else:
-        with open(fichier,'w') as f:
+        with open(chemin_complet,'w') as f:
             f.writelines(f"{phrase}\n")
 
 
 
 # Afficher les fichier avec l'extension '.txt' d'un chemin
 def listes_de_fichers():
-    chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
-    extension = '.py'
-    fichiers = (fichier for fichier in os.listdir(chemin) if not fichier.endswith(extension))
+    extension = '.txt'
+    fichiers = (fichier for fichier in os.listdir(chemin) if fichier.endswith(extension))
 # Fonction normale
     # for fichier in fichiers:
     #     listeDeFichiers.append(fichier)
@@ -71,8 +71,9 @@ def read_le_fichier():
     listes_de_fichers()
     option=int(input("Numéro du fichier que vous voulez lire: "))
     fichier=listeDeFichiers[option]
-    if os.path.exists(fichier):
-        with open(fichier,'r') as f:
+    chemin_complet=os.path.join(chemin,fichier)
+    if os.path.exists(chemin_complet):
+        with open(chemin_complet,'r') as f:
             for linea in f:
                 print(linea)
             f.close()
@@ -86,7 +87,8 @@ def read_le_fichier():
 def introduire_le_expression():
     phrase=input("Introduire le mot/phrase: ")
     fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
-    write_le_fichier(phrase,fichier)
+    chemin_complet=os.path.join(chemin,fichier)
+    write_le_fichier(phrase,chemin_complet)
 
 
 
