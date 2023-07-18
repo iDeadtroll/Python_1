@@ -35,7 +35,9 @@ listeRemercier=[]
 listeDemanderFaveur=[]
 listeDeFichiers=[]
 chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
-# chemin_complet=""
+nom_fichier=""
+
+
 # écrire le mot/phrase dans le fichier
 def write_le_fichier(phrase,chemin_complet):
     if os.path.exists(chemin_complet):
@@ -57,26 +59,39 @@ def listes_de_fichers():
     # for i in listeDeFichiers:
     #     print(i)
 # Fonctionnalité avancée 1 (fonction: .extend)
+    global listeDeFichiers
     listeDeFichiers.extend(fichiers)
     for index,fichier in enumerate(listeDeFichiers):
 # Fonctionnalité avancée 2 (fonction: .split('.')[0])
+        global nom_fichier
         nom_fichier = fichier.split('.')[0]
         print(f"{index}: {nom_fichier}")
+    
+    
+    
 
 
 
 # lire les mots/phrases du fichier
 def read_le_fichier():
-    # fichier=input("Nom du fichier que vous souhaitez lire: ")
     listes_de_fichers()
-    option=int(input("Numéro du fichier que vous voulez lire: "))
+    option=int(input("\nNuméro du fichier que vous voulez lire: "))
+
+    global listeDeFichiers
     fichier=listeDeFichiers[option]
     chemin_complet=os.path.join(chemin,fichier)
     if os.path.exists(chemin_complet):
         with open(chemin_complet,'r') as f:
+            global nom_fichier
+            nom_fichier=fichier.split('.')[0]
+            print(f"\n\t\t{nom_fichier}")
             for linea in f:
-                print(linea)
+                print(f"{linea}",end='')
+            print("")
             f.close()
+            
+            listeDeFichiers=[]
+            
     else:
         print("Erreur: le fichier n'existe pas")
 
@@ -86,9 +101,25 @@ def read_le_fichier():
 # Entrez l'expression et le nom du fichier où l’expression sera enregistrée
 def introduire_le_expression():
     phrase=input("Introduire le mot/phrase: ")
-    fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
-    chemin_complet=os.path.join(chemin,fichier)
-    write_le_fichier(phrase,chemin_complet)
+    print("\nOpciones para guardar la palabra/frase:")
+    print("1. Guardar en archivo existente","\n2. Guardar en nuevo archivo")
+    op=int(input("\nOpcion elegida: "))
+    if op == 1:
+
+        listes_de_fichers()
+        option=int(input("\nNuméro du fichier que vous voulez écrire: "))
+        global listeDeFichiers
+        fichier=listeDeFichiers[option]
+        chemin_complet=os.path.join(chemin,fichier)
+        write_le_fichier(phrase,chemin_complet)
+        listeDeFichiers=[]
+
+
+    if op == 2:
+
+        fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
+        chemin_complet=os.path.join(chemin,fichier)
+        write_le_fichier(phrase,chemin_complet)
 
 
 
@@ -98,13 +129,15 @@ def main_fonction_1():
     while op != 3:
         print(f'1. Agregar nueva frase/palabra al diccionario','\n2. Listas de expresiones','\n3. Salir al menu principal')
         try:
-            op = int(input('Elije una opción: '))
+            op = int(input('\nElije una opción: '))
         except ValueError:
             print('Ingresa un número válido')
             continue
         if op == 1:
+            print("\n\tAgregar nueva frase/palabra")
             introduire_le_expression()
         elif op == 2:
+            print("\n\t\tLista de Expresiones")
             read_le_fichier()
         elif op == 3:
             print("\nVolviendo al menu principal\n")

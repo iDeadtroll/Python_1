@@ -8,7 +8,7 @@ def main_fonction_3():
         print("\t\tMenu Principal")
         print('1. Diccionario','\n2. Agenda','\n3. Salir')
         try:
-            op = int(input('Elije una opción: '))
+            op = int(input('\nElije una opción: '))
         except ValueError:
             print('Ingresa un número válido')
             continue
