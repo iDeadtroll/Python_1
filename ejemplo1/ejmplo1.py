@@ -18,7 +18,7 @@
 #   Merci beaucoup – Muchas gracias
 #   Merci bien – Muchas gracias
 #   Merci de tout coeur – Gracias de todo corazón
-#   Merci infiniment – Infinitas gracias
+#   Merci infiniment – Michisimas gracias
 #   C’est gentil – Eres muy amable
 #   C`est vraiment très gentil de votre part – Es muy amable de tu parte 
 
@@ -49,6 +49,7 @@ def write_le_fichier(phrase,chemin_complet):
 
 
 
+
 # Afficher les fichier avec l'extension '.txt' d'un chemin
 def listes_de_fichers():
     extension = '.txt'
@@ -69,8 +70,6 @@ def listes_de_fichers():
     
     
     
-
-
 
 # lire les mots/phrases du fichier
 def read_le_fichier():
@@ -123,11 +122,12 @@ def introduire_le_expression():
 
 
 
+
 # Fonction principal
 def main_fonction_1():
     op = 0
     while op != 3:
-        print(f'1. Agregar nueva frase/palabra al diccionario','\n2. Listas de expresiones','\n3. Salir al menu principal')
+        print(f'1. Ajouter une nouvelle phrase au dictionnaire',"\n2. Listes d'expressions",'\n3. Quitter le menu principale')
         try:
             op = int(input('\nElije una opción: '))
         except ValueError:
