@@ -76,7 +76,7 @@ def main_fonction_2():
 
     op=0
     while op != 3:
-
+        print("\t\tMenu Agenda")
         print("1. Añadir contacto/s","\n2. Listar contactos","\n3. Salir al menu principal\n")
         try:
             op=int(input("Seleccione una opcion: "))

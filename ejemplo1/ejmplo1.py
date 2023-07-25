@@ -71,7 +71,7 @@ def listes_de_fichers():
     
     
 
-# lire les mots/phrases du fichier
+# Lire les mots/phrases du fichier
 def read_le_fichier():
     listes_de_fichers()
     option=int(input("\nNuméro du fichier que vous voulez lire: "))
@@ -99,26 +99,62 @@ def read_le_fichier():
 
 # Entrez l'expression et le nom du fichier où l’expression sera enregistrée
 def introduire_le_expression():
-    phrase=input("Introduire le mot/phrase: ")
-    print("\nOpciones para guardar la palabra/frase:")
-    print("1. Guardar en archivo existente","\n2. Guardar en nuevo archivo")
-    op=int(input("\nOpcion elegida: "))
-    if op == 1:
+    phrase=input("Introduire le mot/phrase:\n")
+    
+    
 
-        listes_de_fichers()
-        option=int(input("\nNuméro du fichier que vous voulez écrire: "))
-        global listeDeFichiers
-        fichier=listeDeFichiers[option]
-        chemin_complet=os.path.join(chemin,fichier)
-        write_le_fichier(phrase,chemin_complet)
-        listeDeFichiers=[]
+    op = 0
+    while op != 3:
+        print("\nOpciones para guardar la palabra/frase:\n")
+        print("1. Guardar en archivo existente","\n2. Guardar en nuevo archivo","\n3. Volver al menu anterior")
+        try:
+            op=int(input("\nElije una opción: "))
+        except ValueError:
+            print("Opcion invalida")
+            continue
+        if op == 1:
+
+            print("\t\tFichiers disponibles")
+            listes_de_fichers()
+            global listeDeFichiers
+            option=-1
+            limit=len(listeDeFichiers)
+            while option != limit:
+                print("\nNuméro du fichier que vous voulez écrire ou la touche '",limit,"' pour sortir: ",end='')
+                try:
+                    option=int(input())
+                except ValueError:
+                    print("Valor incorrecto. Ingrese un valor entero")
+                    continue
+                if option>=0 and option<=limit-1:
+
+                    fichier=listeDeFichiers[option]
+                    chemin_complet=os.path.join(chemin,fichier)
+                    write_le_fichier(phrase,chemin_complet)
+                    listeDeFichiers=[]
+                    option=limit
+                    op=3
+                    
+                elif option == limit:
+                    op=3
+                    print("Saliendo")
+                else:
+                    print("Valor incorrecto.")
+            
+            listeDeFichiers=[]
 
 
-    if op == 2:
+        elif op == 2:
 
-        fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
-        chemin_complet=os.path.join(chemin,fichier)
-        write_le_fichier(phrase,chemin_complet)
+            fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
+            chemin_complet=os.path.join(chemin,fichier)
+            write_le_fichier(phrase,chemin_complet)
+
+        elif op== 3:
+            print("Volviendo al menu anterior\n")
+
+        else:
+            print("Ingresa una opcion válida")
 
 
 
@@ -127,6 +163,7 @@ def introduire_le_expression():
 def main_fonction_1():
     op = 0
     while op != 3:
+        print("\n\t\tMenu Diccionario\n")
         print(f'1. Ajouter une nouvelle phrase au dictionnaire',"\n2. Listes d'expressions",'\n3. Quitter le menu principale')
         try:
             op = int(input('\nElije una opción: '))
@@ -134,7 +171,7 @@ def main_fonction_1():
             print('Ingresa un número válido')
             continue
         if op == 1:
-            print("\n\tAgregar nueva frase/palabra")
+            print("\n\tAjouter une nouvelle mot/phrase\n")
             introduire_le_expression()
         elif op == 2:
             print("\n\t\tLista de Expresiones")

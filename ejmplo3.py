@@ -14,10 +14,8 @@ def main_fonction_3():
             print('Ingresa un número válido')
             continue
         if op == 1:
-            print("\n\t\tMenu Diccionario\n")
             main_fonction_1()
         elif op == 2:
-            print("\t\tMenu Agenda")
             main_fonction_2()
         elif op == 3:
             print('Saliendo...')
