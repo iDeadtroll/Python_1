@@ -52,8 +52,9 @@ def write_le_fichier(phrase,chemin_complet):
 
 # Afficher les fichier avec l'extension '.txt' d'un chemin
 def listes_de_fichers():
-    extension = '.txt'
-    fichiers = (fichier for fichier in os.listdir(chemin) if fichier.endswith(extension))
+    extension = '.py'
+    fichiers = (fichier for fichier in os.listdir(chemin) if not fichier.endswith(extension) and os.path.isfile(os.path.join(chemin, fichier)))
+
 # Fonction normale
     # for fichier in fichiers:
     #     listeDeFichiers.append(fichier)
@@ -74,25 +75,41 @@ def listes_de_fichers():
 # Lire les mots/phrases du fichier
 def read_le_fichier():
     listes_de_fichers()
-    option=int(input("\nNuméro du fichier que vous voulez lire: "))
-
     global listeDeFichiers
-    fichier=listeDeFichiers[option]
-    chemin_complet=os.path.join(chemin,fichier)
-    if os.path.exists(chemin_complet):
-        with open(chemin_complet,'r') as f:
-            global nom_fichier
-            nom_fichier=fichier.split('.')[0]
-            print(f"\n\t\t{nom_fichier}")
-            for linea in f:
-                print(f"{linea}",end='')
-            print("")
-            f.close()
+    limit=len(listeDeFichiers)
+    option=0
+    while option != limit:
+        print(f"\nNuméro du fichier que vous voulez lire ou (",limit,") pour sortir: ",end='')
+        try:
+            option=int(input())
+        except ValueError:
+            print(f"Error: Ingrese un valor entero (0-{limit-1})")
+            continue
+        if option>=0 and option<=limit-1:
+        
+            fichier=listeDeFichiers[option]
+            chemin_complet=os.path.join(chemin,fichier)
             
+            with open(chemin_complet,'r') as f:
+                    global nom_fichier
+                    nom_fichier=fichier.split('.')[0]
+                    print(f"\n\t\t{nom_fichier}")
+                    for linea in f:
+                        print(f"{linea}",end='')
+                    print("")
+                    f.close()
+                    
+                    listeDeFichiers=[]
+                    option=limit
+                    
+
+        elif option == limit:
             listeDeFichiers=[]
+            print("Saliendo...")
+
+        else:
+            print(f"Error: Ingrese un valor entero (0-{limit-1})")
             
-    else:
-        print("Erreur: le fichier n'existe pas")
 
 
 
@@ -110,7 +127,7 @@ def introduire_le_expression():
         try:
             op=int(input("\nElije una opción: "))
         except ValueError:
-            print("Opcion invalida")
+            print("Error: Ingrese un valor entero (0-3)")
             continue
         if op == 1:
 
@@ -120,11 +137,11 @@ def introduire_le_expression():
             option=-1
             limit=len(listeDeFichiers)
             while option != limit:
-                print("\nNuméro du fichier que vous voulez écrire ou la touche '",limit,"' pour sortir: ",end='')
+                print("\nNuméro du fichier que vous voulez écrire ou la touche (",limit,") pour sortir: ",end='')
                 try:
                     option=int(input())
                 except ValueError:
-                    print("Valor incorrecto. Ingrese un valor entero")
+                    print(f"Error: Ingrese un valor entero (0-{limit-1})")
                     continue
                 if option>=0 and option<=limit-1:
 
@@ -134,12 +151,13 @@ def introduire_le_expression():
                     listeDeFichiers=[]
                     option=limit
                     op=3
+                    input("Preione una tecla para salir al menu enterior")
                     
                 elif option == limit:
                     op=3
                     print("Saliendo")
                 else:
-                    print("Valor incorrecto.")
+                    print(f"Error: Ingrese un valor entero (0-{limit-1})")
             
             listeDeFichiers=[]
 
@@ -148,13 +166,39 @@ def introduire_le_expression():
 
             fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
             chemin_complet=os.path.join(chemin,fichier)
-            write_le_fichier(phrase,chemin_complet)
+            if os.path.exists(chemin_complet):
+                print("El archivo ya existe: ","\n1. Guardar","\n2. Salir")
+                option=0
+                while option != 2:
+                    print("Selecciona la opcion (1-2): ",end="")
+                    try:
+                        option=int(input())
+                    except ValueError:
+                        print("Error: Ingrese un valor entero (1-2)")
+                        continue
+                    if option == 1:
+                        write_le_fichier(phrase,chemin_complet)
+                        option=2
+                        op=3
+                        input("Preione una tecla para salir al menu enterior")
+                    elif option == 2:
+                        option=2
+                        op=3
+                    else:
+                        print("Error: Ingrese un valor entero (1-2)")
+
+                    
+            else:
+            
+                write_le_fichier(phrase,chemin_complet)
+                op=3
+                input("Preione una tecla para salir al menu enterior")
 
         elif op== 3:
             print("Volviendo al menu anterior\n")
 
         else:
-            print("Ingresa una opcion válida")
+            print("Error: Ingrese un valor entero (0-3)")
 
 
 
@@ -166,9 +210,9 @@ def main_fonction_1():
         print("\n\t\tMenu Diccionario\n")
         print(f'1. Ajouter une nouvelle phrase au dictionnaire',"\n2. Listes d'expressions",'\n3. Quitter le menu principale')
         try:
-            op = int(input('\nElije una opción: '))
+            op = int(input('\nElije una opción (1-3): '))
         except ValueError:
-            print('Ingresa un número válido')
+            print('Ingresa un número entero (1-3)')
             continue
         if op == 1:
             print("\n\tAjouter une nouvelle mot/phrase\n")
@@ -179,4 +223,4 @@ def main_fonction_1():
         elif op == 3:
             print("\nVolviendo al menu principal\n")
         else:
-            print('Ingresa una opción válida')
+            print('Ingresa una opción válida (1-3)')
