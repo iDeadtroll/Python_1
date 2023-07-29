@@ -10,6 +10,7 @@
 
 # Seguir un planteamiento similar al modulo 'ejmplo1.py'
     # Suivre une approche similaire au module précédent.
+import time
 
 jours = ('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
 numJour = (1,2,3,4,5,6,7)
@@ -77,19 +78,20 @@ def main_fonction_2():
     op=0
     while op != 3:
         print("\t\tMenu Agenda")
-        print("1. Añadir contacto/s","\n2. Listar contactos","\n3. Salir al menu principal\n")
+        print("1. Ajouter des contacts","\n2. Lister les contacts","\n3. Retourner au menu principal\n")
         try:
-            op=int(input("Seleccione una opcion: "))
+            op=int(input("Choisissez une option: "))
         except ValueError:
-            print("Opcion no valida")
+            print("Erreur: Entrez une valeur entière (1-3)")
             continue
         if op == 1:
-            print("\t\tAnadir contactos")
+            print("\t\tAjouter des contacts")
             ajouter_des_contacts()
         elif op == 2 :
-            print("\t\tLista de contactos")
+            print("\t\tLister les contacts")
             afficher_les_contacts()
         elif op == 3:
-            print("Volviendo al menu principal")
+            print("Retour au menu principal...")
+            time.sleep(2)
         else:
-            print("Opcion no valida")
+            print("Entrez un numéro valide (1-3)")

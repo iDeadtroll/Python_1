@@ -27,6 +27,7 @@
 #   Pourriez-vous parler plus lentement, s’il vous plaît? – ¿Podría hablar más lentamente, por favor?
 import os.path
 import os
+import time
 
 
 listeSalutations=[]
@@ -123,11 +124,11 @@ def introduire_le_expression():
     op = 0
     while op != 3:
         print("\nOpciones para guardar la palabra/frase:\n")
-        print("1. Guardar en archivo existente","\n2. Guardar en nuevo archivo","\n3. Volver al menu anterior")
+        print("1. Enregistrer dans le fichier existant","\n2. Enregistrer dans un nouveau fichier","\n3. Revenir au menu précédent")
         try:
-            op=int(input("\nElije una opción: "))
+            op=int(input("\nChoisissez une option: "))
         except ValueError:
-            print("Error: Ingrese un valor entero (0-3)")
+            print("Erreur: Entrez une valeur entière (0-3)")
             continue
         if op == 1:
 
@@ -141,7 +142,7 @@ def introduire_le_expression():
                 try:
                     option=int(input())
                 except ValueError:
-                    print(f"Error: Ingrese un valor entero (0-{limit-1})")
+                    print(f"Erreur: Entrez une valeur entière (0-{limit-1})")
                     continue
                 if option>=0 and option<=limit-1:
 
@@ -151,13 +152,14 @@ def introduire_le_expression():
                     listeDeFichiers=[]
                     option=limit
                     op=3
-                    input("Preione una tecla para salir al menu enterior")
+                    input("Appuyez sur 'entrer' pour revenir au menu précédent")
                     
                 elif option == limit:
                     op=3
-                    print("Saliendo")
+                    print('Quitter...')
+                    time.sleep(2)
                 else:
-                    print(f"Error: Ingrese un valor entero (0-{limit-1})")
+                    print(f"Entrez un numéro valide (0-{limit-1})")
             
             listeDeFichiers=[]
 
@@ -167,38 +169,38 @@ def introduire_le_expression():
             fichier=input("Nom du fichier auquel vous souhaitez ajouter le mot/phrase: ")
             chemin_complet=os.path.join(chemin,fichier)
             if os.path.exists(chemin_complet):
-                print("El archivo ya existe: ","\n1. Guardar","\n2. Salir")
+                print("Le fichier existe déjà: ","\n1. Enregistrer","\n2.  Quitter")
                 option=0
                 while option != 2:
-                    print("Selecciona la opcion (1-2): ",end="")
+                    print("Choisissez une option (1-2): ",end="")
                     try:
                         option=int(input())
                     except ValueError:
-                        print("Error: Ingrese un valor entero (1-2)")
+                        print("Erreur: Entrez une valeur entière (1-2)")
                         continue
                     if option == 1:
                         write_le_fichier(phrase,chemin_complet)
                         option=2
                         op=3
-                        input("Preione una tecla para salir al menu enterior")
+                        input("Appuyez sur 'entrer' pour revenir au menu précédent")
                     elif option == 2:
                         option=2
                         op=3
                     else:
-                        print("Error: Ingrese un valor entero (1-2)")
+                        print("Entrez un numéro valide (1-2)")
 
                     
             else:
             
                 write_le_fichier(phrase,chemin_complet)
                 op=3
-                input("Preione una tecla para salir al menu enterior")
+                input("Appuyez sur 'entrer' pour revenir au menu précédent")
 
         elif op== 3:
-            print("Volviendo al menu anterior\n")
+            print("Retour au menu principal\n")
 
         else:
-            print("Error: Ingrese un valor entero (0-3)")
+            print("Entrez un numéro valide (1-3)")
 
 
 
@@ -207,20 +209,20 @@ def introduire_le_expression():
 def main_fonction_1():
     op = 0
     while op != 3:
-        print("\n\t\tMenu Diccionario\n")
+        print("\n\t\tMenu Dictionnaire\n")
         print(f'1. Ajouter une nouvelle phrase au dictionnaire',"\n2. Listes d'expressions",'\n3. Quitter le menu principale')
         try:
-            op = int(input('\nElije una opción (1-3): '))
+            op = int(input('\nChoisissez une option (1-3): '))
         except ValueError:
-            print('Ingresa un número entero (1-3)')
+            print('Erreur: Entrez une valeur entière (1-3)')
             continue
         if op == 1:
             print("\n\tAjouter une nouvelle mot/phrase\n")
             introduire_le_expression()
         elif op == 2:
-            print("\n\t\tLista de Expresiones")
+            print("\n\t\tListes d'expressions")
             read_le_fichier()
         elif op == 3:
-            print("\nVolviendo al menu principal\n")
+            print("\nRetour au menu principal\n")
         else:
-            print('Ingresa una opción válida (1-3)')
+            print('Entrez un numéro valide (1-3)')
