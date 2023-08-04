@@ -15,12 +15,8 @@ import os.path
 import os
 import time
 
-
-listeSalutations=[]
-listeAu_revoirs=[]
-listeRemercier=[]
-listeDemanderFaveur=[]
 listeDeFichiers=[]
+# chemin = 'C:/Users/joni-/Documents/GitHub/Python_1/ejemplo1'
 chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
 nom_fichier=""
 
@@ -103,7 +99,7 @@ def read_le_fichier():
 
 
 
-# Entrez l'expression et le nom du fichier où l’expression sera enregistrée
+# Entrez l'expression et le nom du fichier où l'expression sera enregistrée
 def introduire_le_expression():
     phrase=input("Introduire le mot/phrase:\n")
     
