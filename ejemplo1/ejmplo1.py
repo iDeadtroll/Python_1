@@ -84,7 +84,7 @@ def read_le_fichier():
         try:
             option=int(input())
         except ValueError:
-            print(f"Error: Ingrese un valor entero (0-{limit-1})")
+            print(f"Erreur: Entrez une valeur entière (0-{limit-1})")
             continue
         if option>=0 and option<=limit-1:
         
@@ -106,10 +106,10 @@ def read_le_fichier():
 
         elif option == limit:
             listeDeFichiers=[]
-            print("Saliendo...")
+            print("Quitter...")
 
         else:
-            print(f"Error: Ingrese un valor entero (0-{limit-1})")
+            print(f"Entrez un numéro valide (0-{limit-1})")
             
 
 
@@ -123,7 +123,7 @@ def introduire_le_expression():
 
     op = 0
     while op != 3:
-        print("\nOpciones para guardar la palabra/frase:\n")
+        print("\nOptions pour enregistrer le mot/phrase:\n")
         print("1. Enregistrer dans le fichier existant","\n2. Enregistrer dans un nouveau fichier","\n3. Revenir au menu précédent")
         try:
             op=int(input("\nChoisissez une option: "))
@@ -223,6 +223,6 @@ def main_fonction_1():
             print("\n\t\tListes d'expressions")
             read_le_fichier()
         elif op == 3:
-            print("\nRetour au menu principal\n")
+            print("\nRetour au menu principal...\n")
         else:
             print('Entrez un numéro valide (1-3)')
