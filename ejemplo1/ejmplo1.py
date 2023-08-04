@@ -1,28 +1,14 @@
 #Archivo de ejemplo 1 (Fichier d’exemple 1)
 
-#   Bonjour: Hola/Buenos días
-#   Salut: Hola (informal)
-#   Bonsoir: Buenas tardes/Buenas noches
-#   Coucou: Hola (informal y cariñoso)
-#   Allô: Hola (se usa principalmente al contestar el teléfono)
-
-#   Adieu – adiós (muy formal)
-#   Au revoir – Adiós/ hasta la vista
-#   À demain – hasta mañana
-#   Salut!- ¡chao!
-#   À plus tard – hasta luego
-#   À plus! – hasta luego (más informal)
-#   Je me tire! – ¡me piro!
-
 #   Merci – Gracias
 #   Merci beaucoup – Muchas gracias
 #   Merci bien – Muchas gracias
-#   Merci de tout coeur – Gracias de todo corazón
 #   Merci infiniment – Michisimas gracias
-#   C’est gentil – Eres muy amable
-#   C`est vraiment très gentil de votre part – Es muy amable de tu parte 
+#   Merci de tout coeur – Gracias de todo corazón
+#   C'est gentil – Eres muy amable
+#   C'est vraiment très gentil de votre part – Es muy amable de tu parte 
 
-#   S’il vous plaît – Por favor
+#   S'il vous plaît – Por favor
 #   Pourriez-vous répéter, s’il vous plaît? – ¿Podría repetir, por favor?
 #   Pourriez-vous parler plus lentement, s’il vous plaît? – ¿Podría hablar más lentamente, por favor?
 import os.path
@@ -39,7 +25,7 @@ chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
 nom_fichier=""
 
 
-# écrire le mot/phrase dans le fichier
+# Écrire le mot/phrase dans le fichier
 def write_le_fichier(phrase,chemin_complet):
     if os.path.exists(chemin_complet):
         with open(chemin_complet,'a') as f:
@@ -52,6 +38,8 @@ def write_le_fichier(phrase,chemin_complet):
 
 
 # Afficher les fichier avec l'extension '.txt' d'un chemin
+# Afficher les fichier sans l'extension '.py' d'un chemin
+# Afficher uniquement les fichiers d'un chemin sauf les fichiers avec l'extension ‘.py’
 def listes_de_fichers():
     extension = '.py'
     fichiers = (fichier for fichier in os.listdir(chemin) if not fichier.endswith(extension) and os.path.isfile(os.path.join(chemin, fichier)))
