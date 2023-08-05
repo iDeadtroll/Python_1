@@ -1,33 +1,21 @@
-#Archivo de ejemplo 1 (Fichier d’exemple 1)
 
-#   Merci – Gracias
-#   Merci beaucoup – Muchas gracias
-#   Merci bien – Muchas gracias
-#   Merci infiniment – Michisimas gracias
-#   Merci de tout coeur – Gracias de todo corazón
-#   C'est gentil – Eres muy amable
-#   C'est vraiment très gentil de votre part – Es muy amable de tu parte 
-
-#   S'il vous plaît – Por favor
-#   Pourriez-vous répéter, s’il vous plaît? – ¿Podría repetir, por favor?
-#   Pourriez-vous parler plus lentement, s’il vous plaît? – ¿Podría hablar más lentamente, por favor?
 import os.path
 import os
 import time
 
 listeDeFichiers=[]
-# chemin = 'C:/Users/joni-/Documents/GitHub/Python_1/ejemplo1'
-chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
+chemin = 'C:/Users/joni-/Documents/GitHub/Python_1/ejemplo1'
+#chemin = '/home/developer/Git-Repos/Git-Basic/ejemplo1'
 nom_fichier=""
 
 
 # Écrire le mot/phrase dans le fichier
 def write_le_fichier(phrase,chemin_complet):
     if os.path.exists(chemin_complet):
-        with open(chemin_complet,'a') as f:
+        with open(chemin_complet,'a',encoding='utf-8') as f:
             f.writelines(f"{phrase}\n")
     else:
-        with open(chemin_complet,'w') as f:
+        with open(chemin_complet,'w',encoding='utf-8') as f:
             f.writelines(f"{phrase}\n")
 
 
@@ -75,7 +63,7 @@ def read_le_fichier():
             fichier=listeDeFichiers[option]
             chemin_complet=os.path.join(chemin,fichier)
             
-            with open(chemin_complet,'r') as f:
+            with open(chemin_complet,'r',encoding='utf-8') as f:
                     global nom_fichier
                     nom_fichier=fichier.split('.')[0]
                     print(f"\n\t\t{nom_fichier}")
